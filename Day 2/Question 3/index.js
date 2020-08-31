@@ -1,2 +1,2 @@
 let Animal=["Cow","Dog","Cat","Fox","Lion"];
-console.log(Animal[0]);
+console.log(Animal[1]);
