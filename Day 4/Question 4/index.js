@@ -24,7 +24,24 @@ let details =[
         hobbies: ['sleep','Lazy','Eating']
     },
 ];
-function display(details){
-    console.log(details);
+
+function displayCountry(details){
+    console.log("People in India");
+    details.forEach(element =>{
+        if(element.country == "India"){
+            console.log(element);
+        }
+    });
 }
-display(details);
+
+function displayAge(details){
+    console.log("People with age less than 30");
+    details.forEach(element =>{
+        if (element.age<30)
+        {
+            console.log(element);
+        }
+    });
+}
+displayAge(details);
+displayCountry(details);
