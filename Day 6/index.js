@@ -1,19 +1,19 @@
 let targets=[{
-    name:'Vishwas',
+    name:'Vishwesh',
     age :21,
-    city : 'Banglore',
-    salary : 20000,
-},
-{
-    name: 'Vishwesh',
-    age : 21,
     city : 'Banglore',
     salary : 50000,
 },
 {
+    name: 'Vishwas',
+    age : 21,
+    city : 'Banglore',
+    salary : 20000,
+},
+{
     name: 'Pooja',
     age : 22,
-    city : 'Banglore',
+    city : 'Mysore',
     salary : 75000,
 },
 {
