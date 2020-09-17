@@ -1,102 +1,84 @@
-window.onload=function(){
-    let buses = [];
-
-    if(localStorage.getItem("buses")==null){
-        let stringbuses=JSON.stringify(buses);
-
-        console.log(stringbuses);
-        localStorage.setItem("buses", buses);
-    }
-
-};
-function display(bus_data=undefined) {
-    let resbuses;
-    let samplearray='';
-    if(bus_data==undefined){
-        resbuses=JSON.parse(localStorage.getItem("buses"));
-    }
-    else{
-    resbuses = bus_data;
-    }
-  
-    resbuses.forEach(function(element, index) {
-      let presetrow = `
-      <tr>
-      <td>${index+1}</td>
-      <td>${element.name}</td>
-      <td>${element.source}</td>
-      <td>${element.destination}</td>
-      <td>${element.number}</td>
-      <td>${element.passengerCapacity}</td>
-      <td><button onclick="delete_ele(${index})" class="del_btn">delete</button>
-      </td>
-      </tr>`;
-        samplearray+=(presetrow);
-        
-        
-    });
-
-    
-    console.log(typeof(resbuses));
-    document.getElementById('tablerows').innerHTML = samplearray;
+let busdata = [
+    // {
+    // name:'',
+    // soruce:'',
+    // destination:'',
+    // contactNumber:'',
+    // capacity:'',
+    // }
+]
+if(localStorage.getItem("busdata")==null){
+    localStorage.setItem("busdata",JSON.stringify(busdata))
+} 
+function displayBusdata(busArray){
+    let tablebusdata = " ";
+    busArray.forEach(function(obj,index) {
+    let currentrow=`<tr>
+    <td>${index+1}</td>
+    <td>${obj.name}</td>
+    <td>${obj.soruce}</td>
+    <td>${obj.destination}</td>
+    <td>${obj.contactNumber}</td>
+    <td>${obj.capacity}</td>
+    </td>
+    </tr>`
+    tablebusdata+=currentrow
+});
+document.getElementsByClassName('tdata')[0].innerHTML=tablebusdata
 }
 
-function insert(e) {
-    e.preventDefault()  
-    let bus = {};
-    let ins_name = document.getElementById("ins-name").value;
-    let ins_source = document.getElementById("ins-source").value;
-    let ins_dest = document.getElementById("ins-dest").value;
-    let ins_number = document.getElementById("ins-number").value;
-    let ins_passcap = document.getElementById("ins-passcap").value;
- 
-   bus.name = ins_name;
-   bus.source=ins_source;
-   bus.destination=ins_dest;
-   bus.number=ins_number;
-   bus.passengerCapacity=ins_passcap;
+displayBusdata(busdata)
 
-   let retbus=JSON.parse(localStorage.getItem("buses"));
-   retbus.push(bus);
-   strrtbuses=JSON.stringify(retbus);
-   localStorage.setItem("buses",strrtbuses);
+function AddBusInfor(event){
+    event.preventDefault()
+    let data={}
+    let name=document.getElementById('addname').value
+    let src=document.getElementById('addsrc').value
+    let des=document.getElementById('adddes').value
+    let contact=document.getElementById('addnum').value
+    let capacity=document.getElementById('addcapacity').value
+   
+    // console.log(name,src,des,contact,capacity)
+   
+    data.name=name;
+    data.soruce=src
+    data.destination=des;
+    data.contactNumber=Number(contact);
+    data.capacity=Number(capacity)
+   
+    // console.log(busdata)
+    let busdata = JSON.parse(localStorage.getItem("busdata"))
+    busdata.push(data)
+    // console.log(busdata)
+    localStorage.setItem("busdata",JSON.stringify(busdata))
 
-    let retbus1 = JSON.parse(localStorage.getItem("buses"));
-    display(retbus1);
-    
+    displayBusdata(busdata)
 
-
-
-    return false;
+   document.getElementById('addname').value=''
+   document.getElementById('addsrc').value=''
+   document.getElementById('adddes').value=''
+   document.getElementById('addnum').value=''
+   document.getElementById('addcapacity').value=''
 }
 
-function display()
-
-function search() {
-    let ser_ele = document.getElementById("searching").value;
-
-    let arrbus= JSON.parse(localStorage.getItem("buses"));
-
-    let bus_arr = arrbus.filter(function (element) {
-        if (element.source.indexOf(ser_ele) != -1) {
-            return element.source.indexOf(ser_ele) != -1;
-        }
-        else if (element.destination.indexOf(ser_ele) != -1) {
-            return element.destination.indexOf(ser_ele) != -1;
-
-
-        };
-
+function searchSrc(){
+    let src=document.getElementById('srcData').value
+    let busdata = JSON.parse(localStorage.getItem('busdata'))
+    console.log(src)
+    let searchsrc= busdata.filter(function(busdata){
+        return busdata.soruce.toUpperCase().indexOf(src.toUpperCase())!=-1
     })
-    display(bus_arr);
-
+    console.log(searchsrc)
+    displayBusdata(searchsrc)
 }
 
-function delete_ele(index){
-    let rtbuses1 = JSON.parse(localStorage.getItem("buses"));
-    rtbuses1.splice(index, 1);
-    display(rtbuses1);
-    localStorage.setItem("buses", JSON.stringify(rtbuses1));
-
-
+function searchDes(){
+    let des=document.getElementById('desData').value
+    console.log(des)
+    let busdata = JSON.parse(localStorage.getItem('busdata'))
+    let searchdes= busdata.filter(function(busdata){
+        return busdata.destination.toUpperCase().indexOf(des.toUpperCase())!=-1
+    })
+    console.log(searchdes)
+    displayBusdata(searchdes)
 }
