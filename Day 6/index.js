@@ -1,25 +1,25 @@
 let targets=[{
-    name:'reyansh',
-    age :20,
-    city : 'banglore',
+    name:'Vishwas',
+    age :21,
+    city : 'Banglore',
     salary : 20000,
 },
 {
-    name: 'sundeep',
-    age : 20,
-    city : 'delhi',
+    name: 'Vishwesh',
+    age : 21,
+    city : 'Banglore',
     salary : 50000,
 },
 {
-    name: 'davinci',
-    age : 20,
-    city : 'chennai',
+    name: 'Pooja',
+    age : 22,
+    city : 'Banglore',
     salary : 75000,
 },
 {
-    name: 'enigma',
+    name: 'Komala',
     age : 20,
-    city : 'kerla',
+    city : 'Mysore',
     salary : 60000,
 }];
 
@@ -36,9 +36,6 @@ function display(targets){
                 <td>${element.city}</td>
                 <td>${element.salary}</td>
                 <td><button onclick="delete_ele(${index})" class="del_btn">delete</button></td>`;
-
-                
-
 
         target_data+=presetrow;
 
