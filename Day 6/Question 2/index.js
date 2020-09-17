@@ -13,7 +13,7 @@ function display(bus_data=undefined) {
     let resbuses;
     let samplearray='';
     if(bus_data==undefined){
-    resbuses=JSON.parse(localStorage.getItem("buses"));
+        resbuses=JSON.parse(localStorage.getItem("buses"));
     }
     else{
     resbuses = bus_data;
@@ -70,7 +70,7 @@ function insert(e) {
     return false;
 }
 
-display();
+function display()
 
 function search() {
     let ser_ele = document.getElementById("searching").value;
